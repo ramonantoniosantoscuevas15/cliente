@@ -1,2 +1,13 @@
 <app-header></app-header>
+<div class="container mt-6">
 <h2 class="text-3xl">Bienvenido a {{title}}</h2>
+
+<ul>
+  @for (producto of productos; track producto.id) {
+    <li>{{producto.nombre}}</li>
+    <li>{{producto.precio}}</li>
+
+  }
+</ul>
+</div>
+

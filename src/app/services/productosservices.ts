@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Paginacion } from '../shared/models/paginacion';
 import { Producto } from '../shared/models/producto';
+import { TienedaParams } from '../shared/models/tiendaParams';
 
 @Injectable({
   providedIn: 'root',
@@ -9,32 +10,39 @@ import { Producto } from '../shared/models/producto';
 export class Productosservices {
   baseurl = 'https://localhost:7136/api/'
   private http = inject(HttpClient)
-  tipos:string[]=[]
-  marcas:string[]=[]
+  tipos: string[] = []
+  marcas: string[] = []
 
-  obtenerproducto(marcas?:string[],tipos?:string[]){
+  obtenerproducto(tiendaParams: TienedaParams) {
     let params = new HttpParams()
-    if(marcas && marcas.length > 0){
-      params = params.append('marcas',marcas.join(','))
+    if (tiendaParams.marcas.length > 0) {
+      params = params.append('marcas', tiendaParams.marcas.join(','))
     }
-    if(tipos && tipos.length > 0){
-      params = params.append('tipos',tipos.join(','))
+    if (tiendaParams.tipos.length > 0) {
+      params = params.append('tipos', tiendaParams.tipos.join(','))
     }
-    params = params.append('CantidadPagina',20)
-     return this.http.get<Paginacion<Producto>>(this.baseurl + 'productos', {params})
+    if (tiendaParams.orden) {
+      params = params.append('orden', tiendaParams.orden)
+    }
+    if(tiendaParams.buscar){
+      params = params.append('buscar',tiendaParams.buscar)
+    }
+    params = params.append('CantidadPagina', tiendaParams.cantidadPagina)
+    params = params.append('PaginaIndex', tiendaParams.paginaIndex)
+    return this.http.get<Paginacion<Producto>>(this.baseurl + 'productos', { params })
   }
 
-  obtenermarcas(){
-    if(this.marcas.length>0) return
+  obtenermarcas() {
+    if (this.marcas.length > 0) return
     return this.http.get<string[]>(this.baseurl + 'productos/marcas').subscribe({
-      next:response => this.marcas = response
+      next: response => this.marcas = response
     })
   }
 
-  obtenertipos(){
-    if(this.tipos.length>0) return
+  obtenertipos() {
+    if (this.tipos.length > 0) return
     return this.http.get<string[]>(this.baseurl + 'productos/tipos').subscribe({
-      next:response => this.tipos = response
+      next: response => this.tipos = response
     })
   }
 

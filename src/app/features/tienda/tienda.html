@@ -1,13 +1,40 @@
 <div class="flex flex-col gap-3">
-  <div class="flex justify-end ">
-    <button mat-stroked-button (click)="AbrirFiltroDialog()">
+  <div class="flex justify-between">
+    <mat-paginator
+    (page)="manejarPageEvent($event)"
+    [length]="productos?.total"
+    [pageSize]="tiendaparams.cantidadPagina"
+    [showFirstLastButtons]="true"
+    [pageSizeOptions]="pagesizeoptions"
+    aria-label="Seleccione una Pagina"
+    [pageIndex]="tiendaparams.paginaIndex - 1"
+
+    >
+
+    </mat-paginator>
+    <form #buscarform="ngForm" (ngSubmit)="buscarChange()" class="relative flex items-center w-full max-w-md mx-4">
+      <input type="search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg"
+      placeholder="Buscar" name="buscar" [(ngModel)]="tiendaparams.buscar"/>
+      <button mat-icon-button type="submit" class="-translate-x-20 text-gray-500">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+    <div class="flex gap-3">
+      <button class="match-input-height" mat-stroked-button  (click)="AbrirFiltroDialog()">
       <mat-icon>filter_list</mat-icon>
       Filtros
     </button>
+    <button class="match-input-height" mat-stroked-button [mat-menu-trigger-for]="ordenMenu">
+      <mat-icon>swap_vert</mat-icon>
+      Orden
+    </button>
+
+    </div>
+
   </div>
   <div class="grid grid-cols-5 gap-4">
 
-  @for (producto of productos; track producto.id) {
+  @for (producto of productos?.datos; track producto.id) {
     <app-producto-objecto [producto]="producto"></app-producto-objecto>
 
 
@@ -17,6 +44,15 @@
 </div>
 
 </div>
+<mat-menu #ordenMenu="matMenu" >
+  <mat-selection-list [multiple]="false" (selectionChange)="ordenChange($event)">
+    @for (orden of ordenOpciones; track $index) {
+      <mat-list-option [value]="orden.valor" [selected]="tiendaparams.orden">
+        {{orden.nombre}}
+      </mat-list-option>
+    }
 
+  </mat-selection-list>
+</mat-menu>
 
 

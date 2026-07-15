@@ -13,7 +13,7 @@ export class Productosservices {
   tipos: string[] = []
   marcas: string[] = []
 
-  obtenerproducto(tiendaParams: TienedaParams) {
+  obtenerproductos(tiendaParams: TienedaParams) {
     let params = new HttpParams()
     if (tiendaParams.marcas.length > 0) {
       params = params.append('marcas', tiendaParams.marcas.join(','))
@@ -30,6 +30,9 @@ export class Productosservices {
     params = params.append('CantidadPagina', tiendaParams.cantidadPagina)
     params = params.append('PaginaIndex', tiendaParams.paginaIndex)
     return this.http.get<Paginacion<Producto>>(this.baseurl + 'productos', { params })
+  }
+  obtenerproducto(id:number){
+    return this.http.get<Producto>(this.baseurl + 'productos/' + id)
   }
 
   obtenermarcas() {

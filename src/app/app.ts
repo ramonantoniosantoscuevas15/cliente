@@ -9,7 +9,7 @@ import { Tienda } from "./features/tienda/tienda";
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Tienda,], 
+  imports: [Header, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

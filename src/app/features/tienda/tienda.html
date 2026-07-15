@@ -1,8 +1,9 @@
-<div class="flex flex-col gap-3">
+@if(productos){
+  <div class="flex flex-col gap-3">
   <div class="flex justify-between">
     <mat-paginator
     (page)="manejarPageEvent($event)"
-    [length]="productos?.total"
+    [length]="productos.total"
     [pageSize]="tiendaparams.cantidadPagina"
     [showFirstLastButtons]="true"
     [pageSizeOptions]="pagesizeoptions"
@@ -20,7 +21,7 @@
       </button>
     </form>
     <div class="flex gap-3">
-      <button class="match-input-height" mat-stroked-button  (click)="AbrirFiltroDialog()">
+      <button  class="match-input-height" mat-stroked-button  (click)="AbrirFiltroDialog()">
       <mat-icon>filter_list</mat-icon>
       Filtros
     </button>
@@ -34,7 +35,7 @@
   </div>
   <div class="grid grid-cols-5 gap-4">
 
-  @for (producto of productos?.datos; track producto.id) {
+  @for (producto of productos.datos; track producto.id) {
     <app-producto-objecto [producto]="producto"></app-producto-objecto>
 
 
@@ -56,3 +57,6 @@
 </mat-menu>
 
 
+
+
+}

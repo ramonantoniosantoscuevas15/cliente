@@ -5,7 +5,7 @@ import { MatCard } from '@angular/material/card';
 import { ProductoObjecto } from "../producto-objecto/producto-objecto";
 import { MatDialog } from '@angular/material/dialog';
 import { Filtrosdialog } from '../filtrosdialog/filtrosdialog';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton, MatAnchor } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tienda',
-  imports: [ProductoObjecto, MatIcon, MatMenu, MatSelectionList, MatListOption, MatMenuTrigger, MatPaginator, FormsModule, MatIconButton],
+  imports: [ProductoObjecto, MatIcon, MatMenu, MatSelectionList, MatListOption, MatMenuTrigger, MatPaginator, FormsModule, MatIconButton, MatAnchor],
   templateUrl: './tienda.html',
   styleUrl: './tienda.scss',
 
@@ -47,7 +47,7 @@ export class Tienda implements OnInit {
 
   }
   ObtenerProductos(){
-    this.productoservices.obtenerproducto(this.tiendaparams).subscribe({
+    this.productoservices.obtenerproductos(this.tiendaparams).subscribe({
       next: response => this.productos = response,
       error: error => console.log(error)
 

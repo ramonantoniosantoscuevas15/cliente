@@ -1,0 +1,20 @@
+<div class="mt-5 flex justify-center gap-4">
+  <button mat-stroked-button (click)="obtener500Error()">probar error 500</button>
+  <button mat-stroked-button (click)="obtener400Error()">probar error 400</button>
+  <button mat-stroked-button (click)="obtener400validationError()">probar error 400validation</button>
+  <button mat-stroked-button (click)="obtener401Error()">probar error 401</button>
+  <button mat-stroked-button (click)="obtener404Error()">probar error 404</button>
+
+</div>
+
+@if(validationErrors){
+   <div class="mx-auto max-w-lg mt-5 bg-red-500">
+    <ul class="space-y-2 p-2">
+      @for (error of validationErrors; track $index) {
+        <li class="text-red-800">{{error}}</li>
+      }
+
+    </ul>
+
+   </div>
+}

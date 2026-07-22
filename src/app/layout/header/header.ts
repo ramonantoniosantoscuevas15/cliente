@@ -5,6 +5,7 @@ import { MatButton, MatAnchor } from '@angular/material/button';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { Ocupado } from '../../core/ocupado';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import { Carritoservices } from '../../services/carritoservices';
 
 @Component({
   selector: 'app-header',
@@ -14,4 +15,5 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 })
 export class Header {
   ocupadoService = inject(Ocupado)
+  carritoservice = inject(Carritoservices)
 }

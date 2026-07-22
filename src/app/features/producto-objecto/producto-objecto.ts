@@ -1,10 +1,11 @@
-import { Component, Input, Pipe } from '@angular/core';
+import { Component, inject, Input, Pipe } from '@angular/core';
 import { Producto } from '../../shared/models/producto';
 import { MatCard, MatCardContent, MatCardActions } from "@angular/material/card";
 import { CurrencyPipe } from '@angular/common';
 import { MatAnchor } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
+import { Carritoservices } from '../../services/carritoservices';
 
 
 @Component({
@@ -15,4 +16,5 @@ import { RouterLink } from "@angular/router";
 })
 export class ProductoObjecto {
   @Input() producto? : Producto
+  carritoService = inject(Carritoservices)
 }

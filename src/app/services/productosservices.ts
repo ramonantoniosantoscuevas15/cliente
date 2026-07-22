@@ -3,12 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { Paginacion } from '../shared/models/paginacion';
 import { Producto } from '../shared/models/producto';
 import { TienedaParams } from '../shared/models/tiendaParams';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Productosservices {
-  baseurl = 'https://localhost:7136/api/'
+  baseurl = environment.apiUrl
   private http = inject(HttpClient)
   tipos: string[] = []
   marcas: string[] = []

@@ -46,7 +46,7 @@
 
 </div>
 <mat-menu #ordenMenu="matMenu" >
-  <mat-selection-list [multiple]="false" (selectionChange)="ordenChange($event)">
+  <mat-selection-list [multiple]="true" (selectionChange)="ordenChange($event)">
     @for (orden of ordenOpciones; track $index) {
       <mat-list-option [value]="orden.valor" [selected]="tiendaparams.orden">
         {{orden.nombre}}

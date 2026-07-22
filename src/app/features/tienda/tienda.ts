@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Productosservices } from '../../services/productosservices';
 import { Producto } from '../../shared/models/producto';
 import { MatCard } from '@angular/material/card';
@@ -23,11 +23,14 @@ import { FormsModule } from '@angular/forms';
 
 })
 export class Tienda implements OnInit {
+
   ngOnInit(): void {
     this.inicializartienda()
 
+
   }
 
+  
 
   productos?: Paginacion<Producto>
   private dialogservices = inject(MatDialog)

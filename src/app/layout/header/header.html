@@ -7,7 +7,10 @@
       <a routerLink="error" routerLinkActive="active">Errores</a>
     </nav>
     <div class="flex gap-3 align-middle">
-      <a matBadge="5" matBadgeSize="large" class="custom-badge nt-2 mr-2">
+      <a routerLink="/carrito" routerLinkActive="active"
+      matBadge="{{carritoservice.objetototal()}}"
+      matBadgeSize="large"
+      class="custom-badge nt-2 mr-2">
         <mat-icon>shopping_cart</mat-icon>
       </a>
       <button mat-stroked-button>Login</button>

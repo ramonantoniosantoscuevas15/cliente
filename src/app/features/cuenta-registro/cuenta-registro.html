@@ -1,0 +1,58 @@
+<mat-card class="max-w-lg mx-auto mt-32 p-8 bg-white">
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-semibold text-primary">Registro</h1>
+
+    </div>
+    <!-- <app-text-input label="nombre" formControlName="nombre">
+      @if (formUtilidades.isvalidField(registroForm,'nombre')) {
+      <mat-error>{{formUtilidades.getFieldError(registroForm,"nombre")}}</mat-error>
+      }
+    </app-text-input> -->
+     <mat-form-field appearance="outline" class="w-full mb-4">
+      <mat-label>Nombre:</mat-label>
+      <input [formControl]="registroForm.controls.nombre" formControlName="nombre" type="text" matInput />
+      @if (formUtilidades.isvalidField(registroForm,'nombre')) {
+      <mat-error>{{formUtilidades.getFieldError(registroForm,"nombre")}}</mat-error>
+      }
+
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="w-full mb-4">
+      <mat-label>Apellido:</mat-label>
+      <input [formControl]="registroForm.controls.apellido" formControlName="apellido" type="text" matInput />
+      @if (formUtilidades.isvalidField(registroForm,'apellido')) {
+      <mat-error>{{formUtilidades.getFieldError(registroForm,"apellido")}}</mat-error>
+      }
+
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full mb-4">
+      <mat-label>Correo:</mat-label>
+      <input [formControl]="registroForm.controls.email" formControlName="email" type="email" placeholder="name@example.com" matInput />
+      @if (formUtilidades.isvalidField(registroForm,'email')) {
+      <mat-error>{{formUtilidades.getFieldError(registroForm,"email")}}</mat-error>
+    }
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full mb-4">
+      <mat-label>Contraseña:</mat-label>
+      <input [formControl]="registroForm.controls.password" formControlName="password" type="password" placeholder="password" matInput />
+      @if (formUtilidades.isvalidField(registroForm,'password')) {
+      <mat-error>{{formUtilidades.getFieldError(registroForm,"password")}}</mat-error>
+    }
+
+    </mat-form-field>
+    @if (validacionErrors){
+    <div class="mb-3 p-4 bg-red-100 text-red-600">
+      <ul class="list-disc px-3">
+        @for (error of validacionErrors; track $index) {
+        <li>{{error}}</li>
+        }
+
+      </ul>
+    </div>
+    }
+    <button [disabled]="registroForm.invalid" mat-flat-button type="submit" class="w-full py-2">Registrarse</button>
+  </form>
+
+</mat-card>

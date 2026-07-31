@@ -1,9 +1,10 @@
 <section>
+  @if(carritoservice.carrito()?.objetos?.length! > 0){
   <div class="mx-auto max-w-7xl">
     <div class="flex w-full items-start gap-6 mt-32">
       <div class="w-3/4">
         @for (objeto of carritoservice.carrito()?.objetos; track objeto.productoid) {
-           <app-carrito-objeto [objeto]="objeto"></app-carrito-objeto>
+        <app-carrito-objeto [objeto]="objeto"></app-carrito-objeto>
         }
 
       </div>
@@ -14,5 +15,9 @@
     </div>
 
   </div>
-</section>
 
+  }@else {
+    <app-estado-vacio></app-estado-vacio>
+  }
+
+</section>

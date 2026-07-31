@@ -9,13 +9,14 @@ import { loadingInterceptor } from './core/loading-interceptor';
 import { Init } from './core/init';
 import { lastValueFrom } from 'rxjs';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { authInterceptor } from './core/auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor,authInterceptor])),
     provideAppInitializer(async () => {
       const iniservice = inject(Init)
       return lastValueFrom(iniservice.inint()).finally(() => {

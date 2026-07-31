@@ -45,7 +45,7 @@ export class Carritoservices {
     })
   }
 
-  agregarobjetoalCarrito(objeto:Carritoobjeto | Producto,cantidad = 1){
+  async agregarobjetoalCarrito(objeto:Carritoobjeto | Producto,cantidad = 1){
     const carrito = this.carrito() ?? this.crearCarrito()
     if(this.esProducto(objeto)){
       objeto = this.mapProductoaCarritoobjeto(objeto)
@@ -54,7 +54,7 @@ export class Carritoservices {
     this.SetCarrito(carrito)
   }
 
-  removerobjetodelCarrito(productoid:number,cantidad=1){
+  async removerobjetodelCarrito(productoid:number,cantidad=1){
     const carrito = this.carrito()
     if(!carrito) return
     const index = carrito.objetos.findIndex(c => c.productoid === productoid)
@@ -72,7 +72,7 @@ export class Carritoservices {
     }
   }
   removercarrito() {
-    this.http.delete(this.baseurl + 'carrito?id' + this.carrito()?.id).subscribe({
+    this.http.delete(this.baseurl + 'carrito?id=' + this.carrito()?.id).subscribe({
       next:() => {
         localStorage.removeItem('carrito_id')
         this.carrito.set(null)

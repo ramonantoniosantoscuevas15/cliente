@@ -1,7 +1,10 @@
 import{nanoid} from 'nanoid'
 export type Carritotipos={
   id:string,
-  objetos:Carritoobjeto[]
+  objetos:Carritoobjeto[],
+  metodoentregaid?:number,
+  paymentintentid?:string,
+  clientsecret?:string
 }
 
 export type Carritoobjeto={
@@ -18,6 +21,9 @@ export type Carritoobjeto={
 export class Carrito implements Carritotipos{
   id=nanoid();
   objetos: Carritoobjeto[] = []
+   metodoentregaid?:number
+  paymentintentid?:string
+  clientsecret?:string
 }
 
 

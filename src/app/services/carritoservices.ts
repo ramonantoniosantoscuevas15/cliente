@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Carrito, Carritoobjeto } from '../shared/models/carrito';
 import { Producto } from '../shared/models/producto';
 import { map } from 'rxjs';
+import { Metodoentrega } from '../shared/models/metodoentrega';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,13 @@ export class Carritoservices {
   objetototal = computed(()=>{
     return this.carrito()?.objetos.reduce((suma,objeto)=> suma + objeto.cantidad,0)
   })
+  entregaseleccionada = signal<Metodoentrega | null>(null)
   totales = computed(() =>{
     const carrito = this.carrito()
+    const entrega = this.entregaseleccionada()
     if(!carrito) return null
     const subtotal = carrito.objetos.reduce((suma,objeto)=> suma + objeto.precio * objeto.cantidad,0)
-    const envio = 0
+    const envio = entrega ? entrega.precio : 0
     const descuento =0
     return{
       subtotal,

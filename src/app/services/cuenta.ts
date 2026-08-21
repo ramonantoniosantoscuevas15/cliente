@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Direccion, usuario } from '../shared/models/usuario';
-import { map } from 'rxjs';
+import { Address, Direccion, usuario } from '../shared/models/usuario';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +40,15 @@ export class Cuenta {
     return this.http.post(this.baseurl + 'cuenta/logout',{})
   }
 
-  actualizarDireccion(direccion:Direccion){
-    return this.http.post(this.baseurl + 'cuenta/direccion', direccion)
+  actualizarDireccion(address:Address){
+    return this.http.post(this.baseurl + 'cuenta/address', address).pipe(
+      tap(() =>{
+        this.usuarioreciente.update(usuario =>{
+          if(usuario) usuario.address = address
+          return usuario
+        })
+      })
+    )
   }
 
   GetEstadoAutorizado(){

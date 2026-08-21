@@ -15,7 +15,7 @@
       </dl>
       <dl class="flex items-center justify-between gap-4">
         <dt class="font-medium text-gray-500">Cargos por Transportacion</dt>
-        <dd class="font-medium text-gray-900">${{carritoservice.totales()?.envio | currency}}</dd>
+        <dd class="font-medium text-gray-900">${{carritoservice.totales()?.envio }}</dd>
 
       </dl>
     </div>
@@ -25,10 +25,14 @@
 
       </dl>
   </div>
-  <div class="flex flex-col gap-2">
+  @if (location.path() !=='/compra') {
+    <div class="flex flex-col gap-2">
     <button routerLink="/compra" mat-flat-button>Comprar</button>
     <button routerLink="/tienda" mat-button>Continuar Comprando</button>
   </div>
+
+  }
+
 </div>
 <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-sm">
   <form class="space-y-2 flex flex-col p-2">

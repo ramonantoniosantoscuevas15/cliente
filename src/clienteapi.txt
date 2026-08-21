@@ -1,0 +1,3 @@
+    "metodopagoid": null,
+    "clientsecret": "pi_3U0kgS4IzQnqk7JS17VY3Hqw_secret_IqfDbzxDQqkC1FcZ6cSlLZ4Li",
+    "paymentintentid": "pi_3U0kgS4IzQnqk7JS17VY3Hqw"

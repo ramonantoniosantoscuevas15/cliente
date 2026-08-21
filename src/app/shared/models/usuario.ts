@@ -2,7 +2,7 @@ export type usuario = {
   nombre:string,
   apellido:string,
   email:string,
-  direccion:Direccion
+  address:Address
 }
 
 export type Direccion ={
@@ -12,4 +12,14 @@ export type Direccion ={
   provincia:string,
   codigopostal:string,
   pais:string
+}
+
+export type Address ={
+  line1:string,
+  line2?:string,
+  city:string,
+  state:string,
+  postalcode:string,
+  country:string
+
 }
